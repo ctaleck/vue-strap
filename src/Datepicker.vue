@@ -3,6 +3,7 @@
     <input class="form-control datepicker-input" type="text"
       v-model="val"
       :class="{'with-reset-button': clearButton}"
+      :name="name"
       :placeholder="placeholder"
       :style="{width:width}"
       @click="inputClick"
@@ -82,6 +83,7 @@ export default {
     width: {type: String},
     clearButton: {type: Boolean, default: false},
     lang: {type: String, default: navigator.language},
+    name: {type: String},
     placeholder: {type: String},
     iconsFont: {type: String, default: 'glyphicon'}
   },
