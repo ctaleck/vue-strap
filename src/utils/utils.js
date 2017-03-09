@@ -90,7 +90,8 @@ export function translations (lang = 'en') {
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     notSelected: 'Nothing Selected',
     required: 'Required',
-    search: 'Search'
+    search: 'Search',
+    selected: 'Selected'
   }
   return window.VueStrapLang ? window.VueStrapLang(lang) : text
 }
@@ -150,3 +151,4 @@ export function VueFixer (vue) {
   vue.mixins.unshift(mixin)
   return vue
 }
+

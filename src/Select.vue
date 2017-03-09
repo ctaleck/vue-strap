@@ -7,7 +7,7 @@
       @keydown.space.stop.prevent="toggle"
       @keydown.enter.stop.prevent="toggle"
     >
-      <span class="btn-content" v-html="loading ? text.loading : showPlaceholder || selected"></span>
+      <span class="btn-content" v-html="loading ? text.loading : showPlaceholder || (showCount ? selectedCount : selected)"></span>
       <span v-if="clearButton&&values.length" class="close" @click="clear()">&times;</span>
     </div>
     <select ref="sel" v-model="val" :name="name" class="secret" :multiple="multiple" :required="required" :readonly="readonly" :disabled="disabled">
@@ -66,6 +66,7 @@ export default {
     required: {type: Boolean, default: null},
     search: {type: Boolean, default: false},
     searchText: {type: String, default: null},
+    showCount: {type: Boolean, default: false},
     url: {type: String, default: null},
     value: null
   },
@@ -98,6 +99,9 @@ export default {
       var sel = this.values.map(val => (this.list.find(o => o[this.optionsValue] === val) || {})[this.optionsLabel]).filter(val => val !== undefined)
       this.$emit('selected', sel)
       return sel.join(', ')
+    },
+    selectedCount() {
+        return this.values.length + ' ' + this.text.selected
     },
     showPlaceholder () { return (this.values.length === 0 || !this.hasParent) ? (this.placeholder || this.text.notSelected) : null },
     text () { return translations(this.lang) },
@@ -335,3 +339,4 @@ export default {
 }
 .btn-group-justified .dropdown-menu { width: 100%; }
 </style>
+
