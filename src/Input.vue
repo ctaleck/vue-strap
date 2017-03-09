@@ -212,7 +212,7 @@ export default {
       if (value.length < this.minlength) { return false }
       if (this.nativeValidate && !this.input.checkValidity()) { return false }
       if (this.regex) {
-        if (!(this.regex instanceof Function ? this.regex(this.value) : this.regex.test(this.value))) { return false }
+        if (!(this.regex instanceof Function ? this.regex(this.val) : this.regex.test(this.val))) { return false }
       }
       return true
     },
