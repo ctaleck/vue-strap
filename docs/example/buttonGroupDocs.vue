@@ -14,24 +14,24 @@
       <h4>Radio</h4>
       <p>
         <button-group v-model="radioValue" type="primary">
-          <radio true-value="left">Left</radio>
-          <radio true-value="middle">Middle</radio>
-          <radio true-value="right">Right</radio>
+          <radio checked-value="left">Left</radio>
+          <radio checked-value="middle">Middle</radio>
+          <radio checked-value="right">Right</radio>
         </button-group>
       </p>
       <p>
         <button-group v-model="radioValue" type="success">
-          <radio true-value="left">Left</radio>
-          <radio true-value="middle">Middle</radio>
-          <radio true-value="right">Right</radio>
+          <radio checked-value="left">Left</radio>
+          <radio checked-value="middle">Middle</radio>
+          <radio checked-value="right">Right</radio>
         </button-group>
       </p>
       <p>
         <label>Not buttons:</label>
-        <button-group v-model="radioValue" type="info" buttons="false">
-          <radio true-value="left">Left</radio>
-          <radio true-value="middle">Middle</radio>
-          <radio true-value="right">Right</radio>
+        <button-group v-model="radioValue" type="info" :buttons="false">
+          <radio checked-value="left">Left</radio>
+          <radio checked-value="middle">Middle</radio>
+          <radio checked-value="right">Right</radio>
         </button-group>
       </p>
       <p>

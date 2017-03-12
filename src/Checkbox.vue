@@ -28,7 +28,7 @@ export default {
     isButton () { return this.button || (this._inGroup && this.$parent.buttons) },
     isFalse () { return this.value === this.falseValue },
     isTrue () { return this.value === this.trueValue },
-    parentValue () { return this._ingroup && this.$parent.val },
+    parentValue () { return this.$parent.val },
     typeColor () { return (this.type || (this.$parent && this.$parent.type)) || 'default' }
   },
   watch: {
@@ -36,13 +36,10 @@ export default {
       var value = val ? this.trueValue : this.falseValue
       this.$emit('checked', val)
       this.$emit('input', value)
-      this.eval()
+      this.updateParent()
     },
     parentValue (val) {
-      var checked = val === this.trueValue
-      if (this.checked !== checked) {
-        this.checked = checked
-      }
+      this.updateFromParent();
     },
     value (val, old) {
       var checked = val === this.trueValue
@@ -57,24 +54,26 @@ export default {
       this._inGroup = true
       parent._checkboxGroup = true
       if (!(parent.val instanceof Array)) { parent.val = [] }
-      this.eval()
     }
   },
   mounted () {
-    if (!this.$parent._checkboxGroup || typeof this.value === 'boolean') { return }
-    if (this.$parent.val.length) {
-      // this.checked = ~this.$parent.val.indexOf(this.value)
-      this.$emit('checked', ~this.$parent.val.indexOf(this.value))
-    } else if (this.checked) {
-      this.$parent.val.push(this.value)
-    }
+    this.updateFromParent();
   },
   methods: {
-    eval () {
+    // called @ mounted(), or whenever $parent.val changes
+    // sync our state with the $parent.val
+    updateFromParent() {
       if (this._inGroup) {
-        var value = this.checked ? this.isTrue : this.isFalse
-        var index = this.$parent.val.indexOf(value)
-        if (this.checked && !~index) this.$parent.val.push(value)
+        var index = this.$parent.val.indexOf(this.trueValue)
+        this.checked = ~index
+      }
+    },
+
+    // called when our checked state changes
+    updateParent() {
+      if (this._inGroup) {
+        var index = this.$parent.val.indexOf(this.trueValue)
+        if (this.checked && !~index) this.$parent.val.push(this.trueValue)
         if (!this.checked && ~index) this.$parent.val.splice(index, 1)
       }
     },

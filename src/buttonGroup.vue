@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    buttons: {default: true},
+    buttons: {type: Boolean, default: true},
     justified: {type: Boolean, default: false},
     type: {type: String, default: 'default'},
     value: {default: null},
@@ -20,8 +20,13 @@ export default {
     }
   },
   watch: {
+    // this will update EXTERNAL v-model when our val changes
     val (val) {
       this.$emit('input', val)
+    },
+    // this will update our INTERNAL val, when something external changes our v-model
+    value (val) {
+      this.val = val
     }
   }
 }

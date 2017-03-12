@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     active () { return this.check === this.checkedValue },
-    parentValue () { return this._inGroup ? this.$parent.val === this.value : null },
+    parentValue () { return this.$parent.val },
     buttonStyle () { return this.button || (this._inGroup && this.$parent.buttons) },
     typeColor () { return (this.type || (this.$parent && this.$parent.type)) || 'default' }
   },
@@ -55,14 +55,18 @@ export default {
       if (this.checkedValue === val) {
         this.$emit('input', val)
         this.$emit('checked', true)
-        if (this._inGroup) { this.$parent.val = val }
+        this.updateParent()
       }
     },
     parentValue (val) {
-      if (this.check !== val && this.checkedValue === val) { this.check = val }
+      this.updateFromParent()
     },
     value (val) {
-      this.check = this.checkedValue === val ? val : null
+      if (this.checkedValue == val) {
+        this.check = val
+      } else {
+        this.check = false
+      }
     }
   },
   created () {
@@ -70,16 +74,26 @@ export default {
     if (parent && parent._btnGroup && !parent._checkboxGroup) {
       this._inGroup = true
       parent._radioGroup = true
-    }
-    if (this.$parent._radioGroup) {
-      if (this.$parent.val) {
-        this.check = (this.$parent.val === this.checkedValue)
-      } else if (this.check) {
-        this.$parent.val = this.checkedValue
-      }
+      this.updateFromParent()
     }
   },
   methods: {
+    updateFromParent() {
+      if (this._inGroup) {
+        if (this.checkedValue == this.$parent.val) {
+          this.check = this.checkedValue
+        } else {
+          this.check = false
+        }
+      }
+    },
+    updateParent() {
+      if (this._inGroup) { 
+        if (this.checkedValue === this.check) {
+          this.$parent.val = this.checkedValue
+        }
+      }
+    },
     focus () {
       this.$refs.input.focus()
     },
@@ -88,9 +102,6 @@ export default {
       this.focus()
       if (this.readonly) { return }
       this.check = this.checkedValue
-      if (this._inGroup) {
-        this.$parent.val = this.checkedValue
-      }
     }
   }
 }
