@@ -35,6 +35,7 @@
         <p><code>String</code>, one of <code>scale</code> <code>fadein</code></p>
         <p><code>scale</code></p>
         <p></p>
+      </div>
       <div>
         <p>content</p>
         <p><code>String</code></p>
@@ -51,7 +52,7 @@
         <p>How to position the tooltip.</p>
       </div>
     </doc-table>
-  </div>
+  </doc-section>
 </template>
 
 <script>

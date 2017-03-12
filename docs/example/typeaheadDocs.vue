@@ -134,7 +134,7 @@
         <p>Used to render every suggestion. Handler:<code>item</code>. The item can be whatever (e.g. <code>string</code>/<code>array</code>/<code>object</code>)</p>
       </div>
     </doc-table>
-  </div>
+  </doc-section>
 </template>
 
 <script>

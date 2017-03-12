@@ -77,8 +77,7 @@
         <p>Return the selected value.</p>
       </div>
     </doc-table>
-  </div>
-  <div></div>
+  </doc-section>
 </template>
 
 <script>
