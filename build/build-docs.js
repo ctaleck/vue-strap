@@ -6994,7 +6994,7 @@
 	  return _c('doc-section', {
 	    attrs: {
 	      "id": "button-group",
-	      "name": "***Button Group"
+	      "name": "Button Group"
 	    }
 	  }, [_c('div', {
 	    staticClass: "bs-example"
