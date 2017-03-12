@@ -19,7 +19,7 @@
     </div>
     <h4>CommonJS</h4>
     <doc-code language="javascript">
-      $ npm install vue-strap
+      $ npm install github:wffranco/vue-strap --save
 
       var alert = require('vue-strap/src/alert');
       // or
@@ -33,7 +33,7 @@
     </doc-code>
     <h4>ES6</h4>
     <doc-code language="javascript">
-      $ npm install vue-strap
+      $ npm install github:wffranco/vue-strap --save
 
       import alert from 'vue-strap/src/alert'
       // or
@@ -48,7 +48,7 @@
 
     <h4>AMD</h4>
     <doc-code language="javascript">
-      $ bower install vue-strap
+      $ bower install github:wffranco/vue-strap
 
       define(['vue-strap'], function(VueStrap) { var alert = VueStrap.alert; ... });
     </doc-code>
