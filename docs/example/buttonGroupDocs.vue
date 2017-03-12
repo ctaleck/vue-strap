@@ -1,5 +1,5 @@
 <template>
-  <doc-section id="button-group" name="***Button Group">
+  <doc-section id="button-group" name="Button Group">
     <div class="bs-example">
       <h4>Checkbox</h4>
       <button-group v-model="checkboxValue">
