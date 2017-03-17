@@ -7,6 +7,15 @@
       <checkbox v-model="checkboxValue.two" true-value="two" type="warning" readonly>Two (readonly)</checkbox>
       <checkbox v-model="checkboxValue.two" true-value="two" type="success">Two</checkbox>
       <hr>
+      <h4>Checkbox (Bound to same Array)</h4>
+      <checkbox v-model="checkboxArray" true-value="one" type="primary">One</checkbox>
+      <checkbox v-model="checkboxArray" true-value="two" type="primary">Two</checkbox>
+      <checkbox v-model="checkboxArray" true-value="three"  type="primary">Three</checkbox>
+      <checkbox v-model="checkboxArray" true-value="four"  type="primary">Four</checkbox>
+      <p>
+        <pre>Checkbox values: {{ checkboxArray }}</pre>
+      </p>
+      <hr>
       <h4>Checkbox Button (Single button)</h4>
       <checkbox button v-model="checkboxValue.three" :true-value="2+1" type="primary">Three</checkbox>
       <checkbox button v-model="checkboxValue.four" type="info" disabled>Four (disabled)</checkbox>
@@ -78,6 +87,7 @@ export default {
   },
   data () {
     return {
+      checkboxArray: [],
       checkboxValue: {
         one: false,
         two: true,

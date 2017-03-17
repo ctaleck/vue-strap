@@ -28,6 +28,7 @@ export default {
     isButton () { return this.button || (this._inGroup && this.$parent.buttons) },
     isFalse () { return this.value === this.falseValue },
     isTrue () { return this.value === this.trueValue },
+    isArray () { return this.value instanceof Array },
     parentValue () { return this.$parent.val },
     typeColor () { return (this.type || (this.$parent && this.$parent.type)) || 'default' }
   },
@@ -35,16 +36,20 @@ export default {
     checked (val, old) {
       var value = val ? this.trueValue : this.falseValue
       this.$emit('checked', val)
-      this.$emit('input', value)
+      if (! this.isArray) this.$emit('input', value);
       this.updateParent()
     },
     parentValue (val) {
       this.updateFromParent();
     },
     value (val, old) {
-      var checked = val === this.trueValue
-      if (this.checked !== checked) {
-        this.checked = checked
+      if (this.isArray) {
+        this.updateFromParent();
+      } else {
+        var checked = val === this.trueValue
+        if (this.checked !== checked) {
+          this.checked = checked
+        }
       }
     }
   },
@@ -66,6 +71,9 @@ export default {
       if (this._inGroup) {
         var index = this.$parent.val.indexOf(this.trueValue)
         this.checked = ~index
+      } else if (this.isArray) {
+        var index = this.value.indexOf(this.trueValue)
+        this.checked = ~index
       }
     },
 
@@ -75,6 +83,10 @@ export default {
         var index = this.$parent.val.indexOf(this.trueValue)
         if (this.checked && !~index) this.$parent.val.push(this.trueValue)
         if (!this.checked && ~index) this.$parent.val.splice(index, 1)
+      } else if (this.isArray) {
+        var index = this.value.indexOf(this.trueValue)
+        if (this.checked && !~index) this.value.push(this.trueValue)
+        if (!this.checked && ~index) this.value.splice(index, 1)
       }
     },
     toggle () {
