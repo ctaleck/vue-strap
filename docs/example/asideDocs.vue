@@ -38,10 +38,10 @@
       </sidebar>
     </div>
     <doc-code language="markup">
-      &lt;sidebar v-model="showRight" placement="right" header="Title" width="350">
+      &lt;sidebar :show="showRight" placement="right" header="Title" width="350">
         ...
       &lt;/sidebar>
-      &lt;sidebar v-model="showLeft" placement="left" header="Title" width="350">
+      &lt;sidebar :show="showLeft" placement="left" header="Title" width="350">
         ...
       &lt;/sidebar>
     </doc-code>
