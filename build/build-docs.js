@@ -1,6 +1,7 @@
 /*!
- * vue-strap v2.0.2
+ * vue-strap 2.0.2
  * http://wffranco.github.io/vue-strap/
+ * Compiled using Vue 2.1.10
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
