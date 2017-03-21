@@ -25,10 +25,10 @@ export default {
     }
   },
   computed: {
-    isButton () { return this.button || (this._inGroup && this.$parent.buttons) },
+    inGroup () { return this.$parent && this.$parent.btnGroup && !this.$parent._radioGroup },
+    isButton () { return this.button || (this.$parent && this.$parent.btnGroup && this.$parent.buttons) },
     isFalse () { return this.value === this.falseValue },
     isTrue () { return this.value === this.trueValue },
-    isArray () { return this.value instanceof Array },
     parentValue () { return this.$parent.val },
     typeColor () { return (this.type || (this.$parent && this.$parent.type)) || 'default' }
   },
@@ -36,27 +36,22 @@ export default {
     checked (val, old) {
       var value = val ? this.trueValue : this.falseValue
       this.$emit('checked', val)
-      if (! this.isArray) this.$emit('input', value);
+      this.$emit('input', value);
       this.updateParent()
     },
     parentValue (val) {
       this.updateFromParent();
     },
     value (val, old) {
-      if (this.isArray) {
-        this.updateFromParent();
-      } else {
-        var checked = val === this.trueValue
-        if (this.checked !== checked) {
-          this.checked = checked
-        }
+      var checked = val === this.trueValue
+      if (this.checked !== checked) {
+        this.checked = checked
       }
     }
   },
   created () {
-    const parent = this.$parent
-    if (parent && parent._btnGroup && !parent._radioGroup) {
-      this._inGroup = true
+    if (this.inGroup) {
+      const parent = this.$parent
       parent._checkboxGroup = true
       if (!(parent.val instanceof Array)) { parent.val = [] }
     }
@@ -68,25 +63,17 @@ export default {
     // called @ mounted(), or whenever $parent.val changes
     // sync our state with the $parent.val
     updateFromParent() {
-      if (this._inGroup) {
+      if (this.inGroup) {
         var index = this.$parent.val.indexOf(this.trueValue)
-        this.checked = ~index
-      } else if (this.isArray) {
-        var index = this.value.indexOf(this.trueValue)
         this.checked = ~index
       }
     },
-
     // called when our checked state changes
     updateParent() {
-      if (this._inGroup) {
+      if (this.inGroup) {
         var index = this.$parent.val.indexOf(this.trueValue)
         if (this.checked && !~index) this.$parent.val.push(this.trueValue)
         if (!this.checked && ~index) this.$parent.val.splice(index, 1)
-      } else if (this.isArray) {
-        var index = this.value.indexOf(this.trueValue)
-        if (this.checked && !~index) this.value.push(this.trueValue)
-        if (!this.checked && ~index) this.value.splice(index, 1)
       }
     },
     toggle () {
