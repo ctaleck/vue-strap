@@ -14,24 +14,24 @@
       <h4>Radio</h4>
       <p>
         <button-group v-model="radioValue" type="primary">
-          <radio checked-value="left">Left</radio>
-          <radio checked-value="middle">Middle</radio>
-          <radio checked-value="right">Right</radio>
+          <radio selected-value="left">Left</radio>
+          <radio selected-value="middle">Middle</radio>
+          <radio selected-value="right">Right</radio>
         </button-group>
       </p>
       <p>
         <button-group v-model="radioValue" type="success">
-          <radio checked-value="left">Left</radio>
-          <radio checked-value="middle">Middle</radio>
-          <radio checked-value="right">Right</radio>
+          <radio selected-value="left">Left</radio>
+          <radio selected-value="middle">Middle</radio>
+          <radio selected-value="right">Right</radio>
         </button-group>
       </p>
       <p>
         <label>Not buttons:</label>
         <button-group v-model="radioValue" type="info" :buttons="false">
-          <radio checked-value="left">Left</radio>
-          <radio checked-value="middle">Middle</radio>
-          <radio checked-value="right">Right</radio>
+          <radio selected-value="left">Left</radio>
+          <radio selected-value="middle">Middle</radio>
+          <radio selected-value="right">Right</radio>
         </button-group>
       </p>
       <p>
@@ -40,22 +40,22 @@
     </div>
     <doc-code language="markup">
       &lt;button-group v-model="checkboxValue">
-        &lt;checkbox value="left">Left&lt;/checkbox>
-        &lt;checkbox value="middle">Middle&lt;/checkbox>
-        &lt;checkbox value="right">Right&lt;/checkbox>
+        &lt;checkbox true-value="left">Left&lt;/checkbox>
+        &lt;checkbox true-value="middle">Middle&lt;/checkbox>
+        &lt;checkbox true-value="right">Right&lt;/checkbox>
       &lt;/button-group>
 
       &lt;button-group v-model="radioValue" type="primary">
-        &lt;radio value="left">Left&lt;/radio>
-        &lt;radio value="middle">Middle&lt;/radio>
-        &lt;radio value="right">Right&lt;/radio>
+        &lt;radio selected-value="left">Left&lt;/radio>
+        &lt;radio selected-value="middle">Middle&lt;/radio>
+        &lt;radio selected-value="right">Right&lt;/radio>
       &lt;/button-group>
 
       Not Buttons:
       &lt;button-group v-model="radioValue" type="info" buttons="false">
-        &lt;radio value="left">Left&lt;/radio>
-        &lt;radio value="middle">Middle&lt;/radio>
-        &lt;radio value="right">Right&lt;/radio>
+        &lt;radio selected-value="left">Left&lt;/radio>
+        &lt;radio selected-value="middle">Middle&lt;/radio>
+        &lt;radio selected-value="right">Right&lt;/radio>
       &lt;/button-group>
     </doc-code>
 
@@ -74,6 +74,15 @@
         <p>
           <p>Can enable/disable button style.</p>
           <p>Group normal checks if you want to set the same type color for all.</p>
+        </p>
+      </div>
+      <div>
+        <p>disabled</p>
+        <p><code>Boolean</code></p>
+        <p><code>false</code></p>
+        <p>
+          <p>Can enable/disable group values.</p>
+          <p>Disable it if you need independent values but want to group color and/or style.</p>
         </p>
       </div>
       <div>

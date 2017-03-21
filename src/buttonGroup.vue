@@ -8,13 +8,16 @@
 export default {
   props: {
     buttons: {type: Boolean, default: true},
+    disabled: {type: Boolean, default: false},
     justified: {type: Boolean, default: false},
     type: {type: String, default: 'default'},
     value: {default: null},
     vertical: {type: Boolean, default: false}
   },
+  computed: {
+    btnGroup: function () { return !this.disabled }
+  },
   data () {
-    this._btnGroup = true
     return {
       val: this.value
     }
