@@ -6,7 +6,7 @@
       <input type="radio" autocomplete="off" ref="input"
         v-show="!readonly"
         v-model="check"
-        :value="checkedValue"
+        :value="selectedValue"
         :name="name"
         :readonly="readonly"
         :disabled="disabled"
@@ -16,7 +16,7 @@
     <label v-else class="open">
       <input type="radio" autocomplete="off" ref="input"
         v-model="check"
-        :value="checkedValue"
+        :value="selectedValue"
         :name="name"
         :readonly="readonly"
         :disabled="disabled"
@@ -32,10 +32,10 @@
 export default {
   props: {
     button: {type: Boolean, default: false},
-    checkedValue: {default: true},
     disabled: {type: Boolean, default: false},
     name: {type: String, default: null},
     readonly: {type: Boolean, default: false},
+    selectedValue: {default: true},
     type: {type: String, default: null},
     value: {default: false}
   },
@@ -45,14 +45,15 @@ export default {
     }
   },
   computed: {
-    active () { return this.check === this.checkedValue },
+    active () { return this.check === this.selectedValue },
+    inGroup () { return this.$parent && this.$parent.btnGroup && !this.$parent._checkboxGroup },
     parentValue () { return this.$parent.val },
-    buttonStyle () { return this.button || (this._inGroup && this.$parent.buttons) },
+    buttonStyle () { return this.button || (this.$parent && this.$parent.btnGroup && this.$parent.buttons) },
     typeColor () { return (this.type || (this.$parent && this.$parent.type)) || 'default' }
   },
   watch: {
     check (val) {
-      if (this.checkedValue === val) {
+      if (this.selectedValue === val) {
         this.$emit('input', val)
         this.$emit('checked', true)
         this.updateParent()
@@ -62,7 +63,7 @@ export default {
       this.updateFromParent()
     },
     value (val) {
-      if (this.checkedValue == val) {
+      if (this.selectedValue == val) {
         this.check = val
       } else {
         this.check = false
@@ -70,27 +71,26 @@ export default {
     }
   },
   created () {
-    var parent = this.$parent
-    if (parent && parent._btnGroup && !parent._checkboxGroup) {
-      this._inGroup = true
+    if (this.inGroup) {
+      var parent = this.$parent
       parent._radioGroup = true
       this.updateFromParent()
     }
   },
   methods: {
     updateFromParent() {
-      if (this._inGroup) {
-        if (this.checkedValue == this.$parent.val) {
-          this.check = this.checkedValue
+      if (this.inGroup) {
+        if (this.selectedValue == this.$parent.val) {
+          this.check = this.selectedValue
         } else {
           this.check = false
         }
       }
     },
     updateParent() {
-      if (this._inGroup) { 
-        if (this.checkedValue === this.check) {
-          this.$parent.val = this.checkedValue
+      if (this.inGroup) {
+        if (this.selectedValue === this.check) {
+          this.$parent.val = this.selectedValue
         }
       }
     },
@@ -101,7 +101,7 @@ export default {
       if (this.disabled) { return }
       this.focus()
       if (this.readonly) { return }
-      this.check = this.checkedValue
+      this.check = this.selectedValue
     }
   }
 }
