@@ -17,7 +17,7 @@
           <p><pre>Multiple select data : {{select.multiple.join(',')}}</pre></p>
           <form action="./#select" method="get">
             <v-select :options="select.options" options-value="val" v-model="select.multiple" name="animals[]" :search="select.search"
-              multiple :required="select.required" :clear-button="select.clearButton"
+              multiple :required="select.required" :clear-button="select.clearButton" :show-count="select.count"
               :placeholder="select.placeholder?'Using placeholder':null"
               :close-on-select="select.closeOnSelect" :limit="select.limit?3:1024" :disabled="select.disabled"
             ></v-select>
@@ -26,7 +26,7 @@
         </div>
       </div>
       <br/>
-      <button-group type="primary" :buttons="false">
+      <button-group type="primary" :buttons="false" disabled>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <p><checkbox v-model="select.disabled">Disabled</checkbox></p>
@@ -37,7 +37,8 @@
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <p><checkbox v-model="select.required">Required (empty value if noting selected)</checkbox></p>
             <p>
-              Multiple:
+              Only for Multiple:
+              <checkbox v-model="select.count">Show count</checkbox>
               <checkbox v-if="select.multiple" v-model="select.limit">Limit (e.g. 3)</checkbox>
               <checkbox v-if="select.multiple" v-model="select.closeOnSelect">Close on Select</checkbox>
             </p>
@@ -209,6 +210,7 @@ export default {
       select: {
         clearButton: false,
         closeOnSelect: false,
+        count: false,
         disabled: false,
         justified: true,
         limit: false,

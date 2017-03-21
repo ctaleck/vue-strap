@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="row">
-          <button-group type="primary" :buttons="false">
+          <button-group type="primary" :buttons="false" disabled>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <p><checkbox v-model="check.label">Label</checkbox></p>
               <p><checkbox v-model="check.placeholder">placeholder</checkbox></p>
