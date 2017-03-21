@@ -1,5 +1,8 @@
 var webpack = require('webpack')
 var path = require('path')
+//package version
+var pkg = require('./package.json')
+var package_version = pkg.name + ' v' + pkg.version + "\n" + pkg.homepage
 
 module.exports = {
   entry: './docs/index.js',
@@ -31,6 +34,9 @@ module.exports = {
     presets: ['es2015'],
     plugins: ['transform-runtime']
   },
+  plugins: [
+    new webpack.BannerPlugin(package_version)
+  ],
   devtool: 'source-map'
 };
 

@@ -11,7 +11,7 @@ This repository contains a set of native Vue.js components based on Bootstrap's 
 ### NPM
 
 ```bash
-$ npm install github:gswilcox01/vue-strap --save
+$ npm install github:wffranco/vue-strap --save
 ```
 
 ### CommonJS
@@ -69,7 +69,7 @@ and on both the Bower and NPM packages.
 ```
 
 ## Docs
-See the [documentation](https://gswilcox01.github.io/vue-strap/) with live editable examples.
+See the [documentation](https://wffranco.github.io/vue-strap/) with live editable examples.
 
 ## Local Setup
 * Run the docs site in development mode with `npm run docs`. This will watch for file changes as you work.
