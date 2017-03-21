@@ -12,11 +12,13 @@ en: {
   ],
   notSelected: 'Nothing Selected',
   required: 'Required',
-  search: 'Search'
+  search: 'Search',
+  selected: '{{count}} selected'
 },
 
 es: {
   daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+  limit: 'Limite alcanzado (máximo {{limit}} items).',
   loading: 'Cargando...',
   minLength: 'Tamaño Mínimo',
   months: [
@@ -26,7 +28,7 @@ es: {
   notSelected: 'Nada seleccionado',
   required: 'Requerido',
   search: 'Buscar',
-  limit: 'Limite alcanzado (máximo {{limit}} items).'
+  selected: '{{count}} seleccionado(s)'
 },
 
 'pt-BR': {

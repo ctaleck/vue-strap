@@ -91,7 +91,7 @@ export function translations (lang = 'en') {
     notSelected: 'Nothing Selected',
     required: 'Required',
     search: 'Search',
-    selected: 'Selected'
+    selected: '{{count}} selected'
   }
   return window.VueStrapLang ? window.VueStrapLang(lang) : text
 }
@@ -151,4 +151,3 @@ export function VueFixer (vue) {
   vue.mixins.unshift(mixin)
   return vue
 }
-
